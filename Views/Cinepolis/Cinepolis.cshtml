@@ -4,5 +4,179 @@
     ViewBag.Title = "Cinepolis";
 }
 
-<h2>Cinepolis</h2>
+<style>
+    .cinepolis-wrapper {
+        background-image: url('/Content/Images/fondo.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-color: #244196;
+        color: black;
+        padding: 30px;
+        font-family: Arial, sans-serif;
+        border-radius: 5px;
+        max-width: 850px;
+        margin: 0 auto;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
 
+    .cinepolis-wrapper h2.title-box {
+        background-color: white;
+        color: black;
+        font-family: "Times New Roman", Times, serif;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 22px;
+        padding: 2px 15px;
+        display: inline-block;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .cinepolis-wrapper fieldset {
+        border: 1px solid white !important;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        height: 100%;
+    }
+
+    .cinepolis-wrapper legend {
+        font-family: "Times New Roman", Times, serif;
+        font-style: italic;
+        font-size: 18px;
+        padding: 0 5px;
+        font-weight: bold;
+        width: auto;
+        color: white;
+        float: none;
+        line-height: 1;
+        margin-bottom: 0;
+    }
+
+    .cinepolis-wrapper .col-form-label {
+        font-size: 14px;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    .cinepolis-wrapper .form-control {
+        height: 26px;
+        padding: 2px 8px;
+        border-radius: 0;
+        border: none;
+    }
+
+    .cinepolis-wrapper .form-control[readonly] {
+        background-color: #e9ecef;
+        font-weight: bold;
+    }
+
+    .cinepolis-wrapper .form-check-label {
+        font-size: 14px;
+        font-weight: bold;
+        margin-right: 15px;
+        margin-top: 2px;
+    }
+
+    .logo-area {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .panel-acciones {
+        text-align: center;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .cinepolis-btn {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-bottom-color: #666;
+        border-right-color: #666;
+        padding: 4px 20px;
+        margin: 0 10px;
+        color: black;
+        font-family: Arial, sans-serif;
+    }
+
+    .cinepolis-btn:active {
+        border-top-color: #666;
+        border-left-color: #666;
+        border-bottom-color: #ccc;
+        border-right-color: #ccc;
+    }
+</style>
+
+<div class="cinepolis-wrapper mt-4">
+
+    <div class="text-center">
+        <h2 class="title-box">Cinepolis</h2>
+    </div>
+
+    <form action="/" method="post" id="cinepolisForm">
+        <p class="text-bg-danger">@Model.alerta</p>
+        
+        <div class="row">
+            <div class="col-md-7 mb-3 mb-md-0">
+                <fieldset>
+                    <legend>Entradas</legend>
+
+                    <div class="row mb-2 align-items-center">
+                        <label for="Nombre" class="col-sm-5 col-form-label">Nombre</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="Nombre" name="nombre" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 align-items-center">
+                        <label for="CantidadCompradores" class="col-sm-5 col-form-label">Cantidad Compradores</label>
+                        <div class="col-sm-7">
+                            <input type="number" id="CantidadCompradores" name="cantidad_compradores" class="form-control" min="1" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 align-items-center">
+                        <label class="col-sm-5 col-form-label">Tarjeta Cineco</label>
+                        <div class="col-sm-7 d-flex align-items-center mt-1">
+                            <div class="form-check form-check-inline mb-0">
+                                <input type="radio" id="tarjetaSi" name="TarjetaCineco" value="true" class="form-check-input" required>
+                                <label class="form-check-label" for="tarjetaSi">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline mb-0">
+                                <input type="radio" id="tarjetaNo" name="TarjetaCineco" value="false" class="form-check-input" checked>
+                                <label class="form-check-label" for="tarjetaNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 align-items-center">
+                        <label for="CantidadBoletas" class="col-sm-5 col-form-label">Cantidad De Boletas</label>
+                        <div class="col-sm-7">
+                            <input type="number" id="CantidadBoletas" name="cantidad_boletas" class="form-control" min="1" required>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="col-md-5">
+                <fieldset class="d-flex flex-column justify-content-center">
+                    <legend>Salidas</legend>
+
+                    <div class="row mb-2 align-items-center">
+                        <label for="ValorPagar" class="col-sm-6 col-form-label">Valor a Pagar</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="ValorPagar" name="total_pagar" class="form-control" readonly value=@Html.DisplayFor(model => model.total_pagar)>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <fieldset class="panel-acciones">
+            <legend>Acciones</legend>
+            <button type="submit" class="btn cinepolis-btn">Procesar</button>
+            <a href="/Home/Index" class="btn cinepolis-btn" style="text-decoration: none; display: inline-block;">Salir</a>
+        </fieldset>
+    </form>
+</div>

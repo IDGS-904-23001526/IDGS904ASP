@@ -43,5 +43,11 @@ namespace IDGS904ASP.Controllers
             return View();
         }
 
+        public ActionResult Listas()
+        {
+
+
+            return View();
+        }
     }
 }

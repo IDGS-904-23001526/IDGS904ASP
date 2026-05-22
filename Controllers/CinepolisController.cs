@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IDGS904ASP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,11 @@ namespace IDGS904ASP.Controllers
 {
     public class CinepolisController : Controller
     {
-        // GET: Cinepolisss
-        public ActionResult Cinepolis()
+        // GET: Cinepolis
+        public ActionResult Cinepolis(Cinepolis c)
         {
-            return View();
+            c.Valor_Pagar();
+            return View(c);
         }
     }
 }
